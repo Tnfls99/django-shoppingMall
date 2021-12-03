@@ -12,3 +12,14 @@ def index(request):
             'goods' : goods
         }
     )
+
+def detail(request, pk):
+    good = Good.objects.get(pk=pk)
+
+    return render(
+        request,
+        'shop/good_detail.html',
+        {
+            'good' : good,
+        }
+    )
