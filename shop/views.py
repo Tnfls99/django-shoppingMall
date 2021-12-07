@@ -1,25 +1,24 @@
 from django.shortcuts import render
 from .models import Good
+from django.views.generic import ListView, DetailView
+from shop_prj.crawler import get_detail, get_detail_img
+
 
 # Create your views here.
-def index(request):
-    goods = Good.objects.all().order_by('pk')
+class GoodList(ListView):
+    model = Good
+    ordering = 'pk'
 
-    return render(
-        request,
-        'shop/good_list.html',
-        {
-            'goods' : goods
-        }
-    )
 
-def detail(request, pk):
-    good = Good.objects.get(pk=pk)
+class GoodDetail(DetailView):
+    model = Good
 
-    return render(
-        request,
-        'shop/good_detail.html',
-        {
-            'good' : good,
-        }
-    )
+    def get_context_data(self, **kwargs):
+        url = self.object.from_url
+        context = super(GoodDetail, self).get_context_data()
+        detail = get_detail(url)
+        if detail:
+            context['detail'] = detail
+        image = get_detail_img(url)
+        context['img'] = image
+        return context
