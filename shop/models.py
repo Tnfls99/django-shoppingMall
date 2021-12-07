@@ -20,9 +20,23 @@ class Company(models.Model):
         return f'{self.com_name}'
 
 
+class Color(models.Model):
+
+    color = models.CharField(max_length=50)
+
+    company = models.ForeignKey(Company, null=False, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'[{self.company}] - {self.color}'
+
+
 class Size(models.Model):
     # 사이즈 종류를 위한 필드
     version = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f'{self.version}'
+
 
 # product
 class Good(models.Model):
@@ -48,7 +62,4 @@ class Good(models.Model):
 
     def get_absolute_url(self):
         return f'/shop/{self.pk}/'
-
-
-
 
