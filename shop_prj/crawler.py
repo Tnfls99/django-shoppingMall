@@ -16,6 +16,9 @@ def get_detail(url):
 def get_detail_img(url):
         req = urlopen(url)
         soup = BeautifulSoup(req, 'html.parser')
-        meta = soup.find('meta', {'property':'og:image'})
-        image = meta.get('content')
+        meta = soup.find_all('meta', {'property':'og:image'})
+        image= []
+        for img in meta:
+                print(img)
+                image.append(img.get('content'))
         return image
