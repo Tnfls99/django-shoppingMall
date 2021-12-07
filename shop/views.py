@@ -22,4 +22,5 @@ class GoodDetail(DetailView):
         image = get_detail_img(url)
         context['img'] = image
         context['sizes'] = self.object.size.all()
+        context['colors'] = self.object.color.all()
         return context

@@ -56,6 +56,8 @@ class Good(models.Model):
     company = models.ForeignKey(Company, null=True, on_delete=models.CASCADE)
     # 상품 사이즈
     size = models.ManyToManyField(Size)
+    # 상품 색상
+    color = models.ManyToManyField(Color)
 
     def __str__(self):
         return f'{self.name}'
