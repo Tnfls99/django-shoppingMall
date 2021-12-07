@@ -17,6 +17,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='good',
             name='sizes',
-            field=models.ManyToManyField(to='shop.Size'),
+            field=models.ManyToManyField(to='home.Size'),
         ),
     ]
