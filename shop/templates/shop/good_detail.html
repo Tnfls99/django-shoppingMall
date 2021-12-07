@@ -61,7 +61,7 @@
                         <select>
                             <option value="">색상 선택</option>
                             {% for color in colors %}
-                                <option value="{{color}}">{{color}}</option>
+                                <option value="{{color.get_color}}">{{color.get_color}}</option>
                             {% endfor %}
                         </select>
                     </div>

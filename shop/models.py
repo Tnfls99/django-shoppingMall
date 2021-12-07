@@ -29,6 +29,9 @@ class Color(models.Model):
     def __str__(self):
         return f'[{self.company}] - {self.color}'
 
+    def get_color(self):
+        return f'{self.color}'
+
 
 class Size(models.Model):
     # 사이즈 종류를 위한 필드

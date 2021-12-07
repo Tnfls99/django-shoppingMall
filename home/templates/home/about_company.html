@@ -10,26 +10,40 @@
     <link href="{% static 'shop/bootstrap/bootstrap.min.css' %}" rel="stylesheet" type="text/css" media="screen">
     <link href="{% static 'shop/css/footer.css' %}" rel="stylesheet" type="text/css" media="screen">
     <script src="https://kit.fontawesome.com/f234facd18.js" crossorigin="anonymous"></script>
-    <title>Homepage</title>
+    <title>About Company</title>
 </head>
 <body class="web-font">
-    {% include 'home/navbar.html' %}
+    {% include 'shop/navbar.html' %}
 
     <div class="b-example-divider"></div>
 
-  <div class="container px-4 py-5" id="icon-grid">
-    <h2 class="pb-2 border-bottom">Icon grid</h2>
+    <div class="container px-4 py-5" style="text-align:center;">
+        <h2 class="pb-2 border-bottom">Welcome to Ebly !</h2>
+               Ebly는 새로운 쇼핑 역사를 써나갑니다</br>늘 최선을 다해 고객의 입장에서 먼저 생각하겠습니다</br></br>
+                고객센터 : 010-1111-1111</br>
+                주소 : 서울특별시 도봉구 삼양로 144길 33
 
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
-      <div class="col d-flex align-items-start">
-        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#bootstrap"/></svg>
+
+    </div>
+
+
+  <div class="container px-4 py-5 text-center" id="icon-grid">
+    <h2 class="pb-2 border-bottom">Ebly 입점 쇼핑몰</h2>
+    <div class="row mt-3">
+        {% for com in companies %}
+      <div class="col-lg-6 mb-5">
         <div>
-          <h4 class="fw-bold mb-0">Featured title</h4>
-          <p>Paragraph of text beneath the heading to explain the heading.</p>
+          <h4 class="fw-bold mb-0">{{com.com_name}}</h4>
+            <p></p>
+          <p> - 주소 : {{com.address}}</p>
+            <p> - 전화번호 : {{com.contact}}</p>
+            <p> - Bank Account : {{com.bank_account}}</p>
+            <p> - 사이트 바로가기 <a href="{{com.com_url}}">[클릭]</a></p>
         </div>
       </div>
+        {% endfor %}
   </div>
-
+  </div>
 <div class="container">
     <div class="mt-5">
         {% include 'shop/footer.html' %}
