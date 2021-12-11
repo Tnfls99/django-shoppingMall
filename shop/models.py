@@ -19,6 +19,24 @@ class Company(models.Model):
     def __str__(self):
         return f'{self.com_name}'
 
+    def get_absolute_url(self):
+        return f'/shop/company/{self.com_name}'
+
+    def get_complex_url(self):
+        return f'/shop/{self.com_name}'
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+    slug = models.SlugField(max_length=200, unique=True, allow_unicode=True)
+
+    def __str__(self):
+        return f'{self.name}'
+
+    def get_absolute_url(self):
+        return f'/shop/category/{self.slug}'
+
+
 
 class Color(models.Model):
 
@@ -56,15 +74,18 @@ class Good(models.Model):
     # 상품 상세페이지를 위한 자사몰 url
     from_url = models.URLField()
     # 일대다 관계 (상품 - 회사)
-    company = models.ForeignKey(Company, null=True, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, null=True, blank=True, on_delete=models.CASCADE)
     # 상품 사이즈
     size = models.ManyToManyField(Size)
     # 상품 색상
     color = models.ManyToManyField(Color)
+    # 카테고리
+    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return f'{self.name}'
 
     def get_absolute_url(self):
         return f'/shop/{self.pk}/'
+
 
