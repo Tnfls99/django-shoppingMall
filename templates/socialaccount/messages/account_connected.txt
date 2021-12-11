@@ -1,0 +1,2 @@
+{% load i18n %}
+{% blocktrans %}이미 연결된 계정입니다.{% endblocktrans %}

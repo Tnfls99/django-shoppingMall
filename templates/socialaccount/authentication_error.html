@@ -1,0 +1,11 @@
+{% extends "socialaccount/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "네트워크 오류" %}{% endblock %}
+
+{% block content %}
+<h1>{% trans "소셜 계정 로그인 실패" %}</h1>
+
+<p>{% trans "소셜 계정 로그인 시도 과정 중 오류가 발생했습니다." %}</p>
+{% endblock %}

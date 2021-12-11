@@ -1,7 +1,7 @@
 from shop.models import Good
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
-import urllib
+
 
 def get_detail(url):
         req = urlopen(url)
@@ -19,6 +19,5 @@ def get_detail_img(url):
         meta = soup.find_all('meta', {'property':'og:image'})
         image= []
         for img in meta:
-                print(img)
                 image.append(img.get('content'))
         return image

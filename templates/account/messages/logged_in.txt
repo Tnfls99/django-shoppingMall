@@ -1,0 +1,5 @@
+{% load account %}
+{% load i18n %}
+{% user_display user as name %}
+{% blocktrans %}성공적으로 로그인 했습니다 !</br>
+이제 마음껏 쇼핑을 즐겨주세요 🥳{% endblocktrans %}

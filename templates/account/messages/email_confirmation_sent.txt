@@ -1,0 +1,2 @@
+{% load i18n %}
+{% blocktrans %}인증용 이메일을 전송하였습니다. 메일함을 확인해주세요! {{email}}.{% endblocktrans %}

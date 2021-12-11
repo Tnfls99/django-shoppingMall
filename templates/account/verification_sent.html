@@ -1,0 +1,12 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "이메일 인증" %}{% endblock %}
+
+{% block content %}
+    <h1>{% trans "이메일 인증" %}</h1>
+
+    <p>{% blocktrans %}입력하신 이메일로 인증 메일을 전송하였습니다. 메일 내용을 따르시고 회원 가입 과정을 완료해주세요! 만약 몇 분내로 인증 메일이 발송되지 않을 경우 고객센터로 문의 바랍니다.{% endblocktrans %}</p>
+
+{% endblock %}

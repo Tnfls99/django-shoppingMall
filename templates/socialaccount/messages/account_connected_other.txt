@@ -1,0 +1,2 @@
+{% load i18n %}
+{% blocktrans %}이 소셜 계정은 이미 다른 계정과 연결된 것입니다.{% endblocktrans %}

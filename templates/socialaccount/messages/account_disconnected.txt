@@ -1,0 +1,2 @@
+{% load i18n %}
+{% blocktrans %}이 소셜계정은 연결이 끊어졌습니다.{% endblocktrans %}

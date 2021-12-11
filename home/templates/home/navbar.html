@@ -1,3 +1,4 @@
+{% load socialaccount %}
 <nav class="navbar navbar-expand-lg navbar-light web-font" style="background-color: #D2D9DE;">
     <div class="container">
         <a class="navbar-brand" href="/">Ebly</a>
@@ -13,19 +14,29 @@
               <a class="nav-link" href="/shop/">Products</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./mypage.html">My page</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="/about_company/">About Company</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="./mypage.html">{{user.username}} 님</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/accounts/logout/">Log out</a>
+            </li>
+            {% else %}
             <li class="nav-item">
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#loginModal">
-                  <i class="fas fa-sign-in-alt"></i>
                   &nbsp;&nbsp;Log In
                 </button>
             </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="#">상품 등록하기</a>
+            </li>
+            {% endif %}
+            {% endif %}
         </ul>
         </div>
         </div>
@@ -44,10 +55,15 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <button type="button" class="btn btn-outline-dark btn-block btn-sm"><i class="fab fa-google"></i>&nbsp;&nbsp;Log In With Google</button>
+                        <a role="button" class="btn btn-outline-dark btn-block btn-sm"
+                            href="{% provider_login_url 'google' %}">
+                            <i class="fab fa-google"></i>&nbsp;&nbsp;Log In With Google</a>
                         <button type="button" class="btn btn-outline-dark btn-block btn-sm"><i class="far fa-envelope"></i>&nbsp;&nbsp;Log In With Email</button>
                     </div>
                     <div class="col-md-6">
+                        <a role="button" class="btn btn-outline-dark btn-block btn-sm"
+                            href="{% provider_login_url 'kakao' %}">
+                            <i class="fas fa-comment"></i>&nbsp;&nbsp;Log In With kakao</a>
                         <button type="button" class="btn btn-outline-dark btn-block btn-sm"><i class="far fa-envelope"></i>&nbsp;&nbsp;Sign with Email</button>
                     </div>
                 </div>

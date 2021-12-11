@@ -1,0 +1,5 @@
+{% load i18n %}
+{% load account %}
+
+{% user_display user as user_display %}
+<p><strong>{% trans "Note" %}:</strong> {% blocktrans %}이미 {{ user_display }}로 로그인이 되어있습니다.{% endblocktrans %}</p>

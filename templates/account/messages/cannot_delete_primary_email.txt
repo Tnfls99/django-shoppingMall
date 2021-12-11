@@ -1,0 +1,2 @@
+{% load i18n %}
+{% blocktrans %}이메일 정보를 삭제할 수 없습니다. ({{email}}).{% endblocktrans %}
