@@ -1,9 +1,12 @@
-from django.shortcuts import render
-from .models import Good, Category, Company, Tag
+from django.shortcuts import render, redirect
+from .models import Good, Category, Company, Tag, Comment
+from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView
 from shop_prj.crawler import get_detail, get_detail_img
 from django.db.models import Q
-
+from django.core.exceptions import PermissionDenied
+from .forms import CommentForm
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 class GoodList(ListView):
@@ -92,3 +95,40 @@ def tags_page(request, slug):
                   })
 
 
+def mypage(request):
+    user = request.user
+    name = user.username
+    if user.socialaccount_set.exists():
+        avatar = user.socialaccount_set.first().get_avatar_url()
+    else:
+        avatar = 'https://doitdjango.com/avatar/id/426/215f50b97258a737/svg/{user.email}/'
+
+    if user.email:
+        email = user.email
+    else:
+        email = False
+
+    return render(request, 'shop/mypage.html',
+                  {
+                        'username' : name,
+                        'avatar' : avatar,
+                        'email': email,
+                        'comments': Comment.objects.filter(user=user),
+                  })
+
+
+def new_comment(request, pk):
+    if request.user.is_authenticated:
+        good = get_object_or_404(Good, pk=pk)
+        if request.method == 'POST':
+            comment_form = CommentForm(request.POST)
+            if comment_form.is_valid():
+                comment = comment_form.save(commit=False)
+                comment.good = good
+                comment.user = request.user
+                comment.save()
+                return redirect(comment.get_absolute_url())
+            else:
+                return redirect(good.get_absolute_url())
+        else:
+            raise PermissionDenied

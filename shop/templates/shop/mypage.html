@@ -1,0 +1,60 @@
+{% extends 'shop/base.html' %}
+{% block 'main_area' %}
+    {% include 'home/navbar.html' %}
+    <div class="container">
+       <section class="py-5 text-center container">
+        <div class="row mt-3 py-lg-5 text-center" style="background-image: URL(/static/home/images/8f12c522b317357e028e336ac76e825b.jpg)">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <img class="rounded-circle" width="100px" src="{{avatar}}">
+                    <p class="lead text-muted mt-3">{{username}} 님
+                        {% if email %}
+                        <p>{{email}}</p>
+                        {% endif %}
+                <p>
+                    <a href="/accounts/logout/" style="color:gray;">로그아웃</a>
+            </p>
+            </div>
+        </div>
+    </section>
+        <div class="row mt-2">
+            <h3>Your Review</h3>
+            <div class="col"><hr size="10"></div>
+        </div>
+        {% if comments %}
+        {% for c in comments %}
+        <div class="row mt-2">
+             <div class="col">
+                 <div class="card">
+                     <div class="card-body">
+                         <div class="card-text text-center mt-3 mb-3">
+                             <div class="row">
+                             <div class="col-md-3">
+                                 <img class="rounded-circle" src="{{c.good.image.url }}" width="70px"><br>
+                                    {{c.good.name}}
+                             </div>
+                             <div class="col-md-6 mt-3">
+                                    {{c.content}}<br>
+                                 <p style="color:gray;">작성된 날짜 : {{c.created_at}}</p>
+                             </div>
+                             <div class="col-md-3 mt-3">
+                                 <a class="btn btn-outline-dark" href="{{c.good.get_absolute_url}}">상품 보러가기</a>
+                             </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="row mt-4">
+            아직 작성된 리뷰가 없습니다.
+        </div>
+      {% endif %}
+    </div>
+
+<div class="mt-5">
+        {% include 'shop/footer.html' %}
+    </div>
+{% endblock %}
+

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -35,6 +36,7 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         return f'/shop/category/{self.slug}'
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=200, unique=True)
@@ -99,5 +101,18 @@ class Good(models.Model):
 
     def get_absolute_url(self):
         return f'/shop/{self.pk}/'
+
+
+class Comment(models.Model): # 블로그 포스트가 존재해야만 댓글을 달 수 있다. 댓글과 포스트는 다대일 관계
+    good = models.ForeignKey(Good, on_delete=models.CASCADE) # 포스트가 삭제되면 댓글도 모두 삭제
+    user = models.ForeignKey(User, on_delete=models.CASCADE) # 한명의 유저가 여러개의 댓글을 달 수 있기 때문에 다대일 관계
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.user}::{self.content}'
+
+    def get_absolute_url(self):
+        return f'{self.good.get_absolute_url()}#comment-{self.pk}'
 
 
