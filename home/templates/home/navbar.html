@@ -7,9 +7,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
-            </li>
             <li class="nav-item">
               <a class="nav-link" href="/shop/">Products</a>
             </li>
@@ -58,13 +55,13 @@
                         <a role="button" class="btn btn-outline-dark btn-block btn-sm"
                             href="{% provider_login_url 'google' %}">
                             <i class="fab fa-google"></i>&nbsp;&nbsp;Log In With Google</a>
-                        <button type="button" class="btn btn-outline-dark btn-block btn-sm"><i class="far fa-envelope"></i>&nbsp;&nbsp;Log In With Email</button>
+                        <a role="button" class="btn btn-outline-dark btn-block btn-sm" href="/accounts/login/"><i class="far fa-envelope"></i>&nbsp;&nbsp;Log In With Email</a>
                     </div>
                     <div class="col-md-6">
                         <a role="button" class="btn btn-outline-dark btn-block btn-sm"
                             href="{% provider_login_url 'kakao' %}">
                             <i class="fas fa-comment"></i>&nbsp;&nbsp;Log In With kakao</a>
-                        <button type="button" class="btn btn-outline-dark btn-block btn-sm"><i class="far fa-envelope"></i>&nbsp;&nbsp;Sign with Email</button>
+                        <a role="button" class="btn btn-outline-dark btn-block btn-sm" href="/accounts/signup/"><i class="far fa-envelope"></i>&nbsp;&nbsp;Sign with Email</a>
                     </div>
                 </div>
             </div>

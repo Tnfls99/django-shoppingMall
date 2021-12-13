@@ -1,6 +1,4 @@
-.footer {
-   width:100%;
-   height:100px;
-   position:absolute;
-   bottom:0;
+.margin-for-footer {
+    margin-bottom : 130px
+    background-color: #40e0d0;
 }

@@ -11,7 +11,7 @@ from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def home(request):
-    new_goods = Good.objects.order_by('-pk')[:6]
+    new_goods = Good.objects.order_by('-pk')[:3]
     return render(request, 'home/index.html', {'new_goods': new_goods})
 
 def about_com(request):

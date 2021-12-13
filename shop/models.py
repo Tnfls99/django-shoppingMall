@@ -36,8 +36,18 @@ class Category(models.Model):
     def get_absolute_url(self):
         return f'/shop/category/{self.slug}'
 
+class Tag(models.Model):
+    name = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True, allow_unicode=True)
+
+    def __str__(self):
+        return f'{self.name}'
+
+    def get_absolute_url(self):
+        return f'/shop/tags/{self.name}'
 
 
+# product options
 class Color(models.Model):
 
     color = models.CharField(max_length=50)
@@ -81,6 +91,8 @@ class Good(models.Model):
     color = models.ManyToManyField(Color)
     # 카테고리
     category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
+    # 태그
+    tag = models.ManyToManyField(Tag)
 
     def __str__(self):
         return f'{self.name}'

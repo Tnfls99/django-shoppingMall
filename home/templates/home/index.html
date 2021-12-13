@@ -22,7 +22,7 @@
                     <p>365일 24시간 무료배송!
                 <p>
                     <a href="/shop" class="btn btn-secondary my-2">상품 둘러보기</a>
-                    <a href="#" class="btn btn-secondary my-2">회원가입</a>
+                    <a href="/accounts/signup" class="btn btn-secondary my-2">회원가입</a>
                 </p>
         </div>
         </div>
@@ -33,7 +33,7 @@
     <div class="container">
       <div>
         <strong>
-          <h3>New Products - 신상 둘러보기</h3>
+          <h3>New Products - 신상 둘러보기 ✨</h3>
         </strong>
       </div>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -44,9 +44,10 @@
                         <img class="card-img-top" src="{{ good.image.url }}" alt="{{ good }}" />
                     </div>
                     <div class="card-body">
-                        <span class="badge bg-outline-dark float-rigth">미분류</span>
+                        <span class="badge bg-outline-dark float-rigth" style="color:gray;">{{good.category}}</span>
                         <h5 class="card-title">{{ good.name }}</h5>
-                        <a class="btn btn-outline-dark" href="{{ good.get_absolute_url }}">구입하기 →</a>
+                        <h6 class="card-text float-right">{{ good.price }} 원</h6>
+                        <a class="btn btn-outline-dark" href="{{ good.get_absolute_url }}">자세히보기 →</a>
                     </div>
                 </div>
             </div>
@@ -54,11 +55,9 @@
       </div>
     </div>
   </div>
-<div class="container">
-    <div class="mt-5">
-        {% include 'shop/footer.html' %}
-    </div>
-</div>
+
+    {% include 'shop/footer.html' %}
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

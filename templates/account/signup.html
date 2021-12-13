@@ -1,18 +1,40 @@
 {% extends "account/base.html" %}
-
+{% load socialaccount %}
 {% load i18n %}
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
+<h1>{% trans "Welcome!" %}</h1>
 <form class="signup mt-5" id="signup_form" method="post" action="{% url 'account_signup' %}">
   {% csrf_token %}
   {{ form.as_p }}
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
-  <button type="submit" class="btn btn-outline-dark">{% trans "Sign Up" %}</button>
+  <button type="submit" class="btn btn-dark">{% trans "Sign Up" %}</button>
+  <div class="container">
+    <div class="col"><hr></div>
+    <div class="row mt-4" style="text-align:center;">
+      <div class="col mb-3">
+      Sign Up with Social Account
+        </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-sm-3 ml-2 mr-2"></div>
+      <div class="col-sm-3 ml-2 mr-2">
+        <a role="button" class="btn btn-warning btn-block btn-sm"
+                            href="{% provider_login_url 'kakao' %}">
+                            <i class="fas fa-comment"></i>&nbsp;&nbsp;Sign Up With kakao</a>
+      </div>
+      <div class="col-sm-3 ml-2 mr-2">
+        <a role="button" class="btn btn-primary btn-block btn-sm"
+                            href="{% provider_login_url 'google' %}">
+                            <i class="fab fa-google"></i>&nbsp;&nbsp;Sign Up With Google</a>
+      </div>
+      <div class="col-sm-3 ml-2 mr-2"></div>
+      </div>
+    </div>
 </form>
 
 {% endblock %}

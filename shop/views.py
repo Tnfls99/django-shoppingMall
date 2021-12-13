@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Good, Category, Company
+from .models import Good, Category, Company, Tag
 from django.views.generic import ListView, DetailView
 from shop_prj.crawler import get_detail, get_detail_img
 from django.db.models import Q
@@ -31,6 +31,7 @@ class GoodDetail(DetailView):
         context['img'] = image
         context['sizes'] = self.object.size.all()
         context['colors'] = self.object.color.all()
+        context['tags'] = self.object.tag.all()
         return context
 
 
@@ -48,6 +49,7 @@ def category_page(request, slug):
                       'categories' : Category.objects.all(),
                       'no_category_post_count' : Good.objects.filter(category=None).count(),
                       'category': category,
+                      'companies': Company.objects.all(),
                   })
 
 
@@ -59,7 +61,8 @@ def mall_page(request, com_name):
                   {
                       'good_list': good_list,
                       'categories': Category.objects.all(),
-                      'company': company
+                      'company': company,
+                      'companies': Company.objects.all()
                   })
 
 
@@ -73,7 +76,19 @@ def complex_page(request, company, slug):
                     {
                         'good_list': good_list,
                         'company': com_name,
-                        'category': category
+                        'category': category,
+                        'categories': Category.objects.all(),
                     })
+
+
+def tags_page(request, slug):
+    tag = Tag.objects.get(slug=slug)
+    good_list = Good.objects.get(tag=tag)
+
+    return render(request, 'shop/good_list.html',
+                  {
+                      'good_list': good_list,
+                      'tag': tag
+                  })
 
 
