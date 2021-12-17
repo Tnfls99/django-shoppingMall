@@ -36,6 +36,9 @@
                         <h6 class="card-text float-right">{{ good.price }} 원</h6>
                         <a class="btn btn-outline-dark" href="{{ good.get_absolute_url }}">자세히보기 →</a>
                     </div>
+                    <div class="card-footer float-right" style="color:gray; font-size:small">
+                        by {{good.company}}
+                    </div>
                 </div>
             </div>
         {% endfor %}

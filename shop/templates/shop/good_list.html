@@ -15,7 +15,7 @@
             </div>
             <div class="col-md-4 col-lg-4">
                 <div class="input-group mt-4">
-                  <input class="form-control" type="text" id="search-input" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                  <input class="form-control" type="text" id="search-input" placeholder="상품을 검색해보세요" aria-label="Enter search term..." aria-describedby="button-search" />
                   <button class="btn btn-secondary ml-2" id="button-search" type="button" onclick="searchGood()">검색</button>
               </div>
             </div>
@@ -87,6 +87,9 @@
                                 <div class="card-text float-right">{{good.price}} 원</div>
                                 <a class="btn btn-outline-dark mt-2" href="{{ good.get_absolute_url }}">구입하기 →</a>
                             </div>
+                                <div class="card-footer float-right" style="color:gray; font-size:small">
+                                    by {{good.company}}
+                                </div>
                         </div>
                         </div>
                         {% endfor %}

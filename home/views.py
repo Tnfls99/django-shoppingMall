@@ -12,12 +12,10 @@ def home(request):
 def about_com(request):
     companies = Company.objects.all()
     categories = Category.objects.all()
-    print(categories)
     cnt = []
     for c in categories:
         products = Good.objects.filter(category=c)
         cnt.append(products.count())
-    print(cnt)
     return render(request, 'home/about_company.html',
                   {
                       'companies': companies,
