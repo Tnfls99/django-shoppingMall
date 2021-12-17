@@ -89,7 +89,38 @@
         <div class="mt-3"><hr size="10"></div>
         <header class="ml-5">
            <h2>Review</h2>
-            나중에 추가할 예정!!!
+            {% if comments %}
+        {% for c in comments %}
+        <div class="row mt-2">
+             <div class="col">
+                 <div class="card">
+                         <div class="card-text text-center">
+                             <div class="row">
+                                <div class="col-md-6 mt-3">
+                                    <p>{{c.content}}</p>
+                                </div>
+                                 <div class="col-md-6 mt-3">
+                                      <p style="color:gray; font-size:small;"><i>
+                                          {% if c.user.socialaccount_set.exists %}
+                                          <img class="rounded-circle" width="20px" src="{{c.user.socialaccount_set.first.get_avatar_url}}">
+                                          {% else %}
+                                         <img class="rounded-circle" width="20px" src="https://doitdjango.com/avatar/id/426/215f50b97258a737/svg/{user.email}/">
+                                          {% endif %}
+                                          {{c.user}}
+                                          / {{c.created_at}}</i></p>
+                                 </div>
+                             </div>
+                         </div>
+                 </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="row mt-4">
+            아직 작성된 리뷰가 없습니다.
+        </div>
+      {% endif %}
+    </div>
         </header>
     </div>
 <div class="mt-5">

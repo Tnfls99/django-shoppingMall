@@ -51,6 +51,10 @@ class GoodDetail(DetailView):
         if detail:
             context['detail'] = detail
         image = get_detail_img(url)
+        comments = Comment.objects.filter(good=self.object)
+
+
+        context['comments'] = comments
         context['img'] = image
         context['sizes'] = self.object.size.all()
         context['colors'] = self.object.color.all()
