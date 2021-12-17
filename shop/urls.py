@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     path('category/<str:slug>', views.category_page),
     path('company/<str:com_name>', views.mall_page),
+    path('search/<str:q>/', views.GoodSearch.as_view()),
     path('<str:company>/<str:slug>', views.complex_page),
     path('mypage/', views.mypage),
     path('<int:pk>/new_comment/', views.new_comment),

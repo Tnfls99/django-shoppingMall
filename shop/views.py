@@ -9,6 +9,8 @@ from .forms import CommentForm
 from django.shortcuts import get_object_or_404
 
 # Create your views here.
+
+
 class GoodList(ListView):
     model = Good
     ordering = 'pk'
@@ -17,6 +19,24 @@ class GoodList(ListView):
         context = super(GoodList, self).get_context_data()
         context['categories'] = Category.objects.all()
         context['companies'] = Company.objects.all()
+        return context
+
+
+class GoodSearch(GoodList):
+    paginate_by = None
+
+    def get_queryset(self):
+        q = self.kwargs['q']  # 검색어 가지고 옴
+        post_list = Good.objects.filter(
+            Q(name__contains=q) | Q(category__name__contains=q) | Q(company__com_name__contains=q) # 데이터베이스에서 쿼리를 통해 데이터를 찾아옴
+        ).distinct()
+        return post_list
+
+    def get_context_data(self, **kwargs):
+        context = super(GoodSearch, self).get_context_data()
+        q = self.kwargs['q']
+        context['search_info'] = f'{q}에 대한 검색 결과 ({self.get_queryset().count()})'
+
         return context
 
 

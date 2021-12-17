@@ -1,12 +1,7 @@
 from django.shortcuts import render, redirect
-from shop.models import Good, Company
+from shop.models import Good, Company, Category
 from shop_prj.settings import KAKAO_REST_API_KEY
-import requests
-from django.views.generic import View, FormView
-from django.forms import forms
-from shop.models import models
-from django.urls import reverse_lazy, reverse
-from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
@@ -16,7 +11,18 @@ def home(request):
 
 def about_com(request):
     companies = Company.objects.all()
-    return render(request, 'home/about_company.html', {'companies': companies})
+    categories = Category.objects.all()
+    print(categories)
+    cnt = []
+    for c in categories:
+        products = Good.objects.filter(category=c)
+        cnt.append(products.count())
+    print(cnt)
+    return render(request, 'home/about_company.html',
+                  {
+                      'companies': companies,
+                      'cnt': cnt,
+                  })
 
 def kakao_login(request):
     app_rest_api_key = KAKAO_REST_API_KEY

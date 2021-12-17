@@ -10,6 +10,7 @@
     <link href="{% static 'shop/bootstrap/bootstrap.min.css' %}" rel="stylesheet" type="text/css" media="screen">
     <link href="{% static 'shop/css/footer.css' %}" rel="stylesheet" type="text/css" media="screen">
     <script src="https://kit.fontawesome.com/f234facd18.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <title>About Company</title>
 </head>
 <body class="web-font">
@@ -21,9 +22,31 @@
         <h2 class="pb-2 border-bottom">Welcome to Ebly !</h2>
                Ebly는 새로운 쇼핑 역사를 써나갑니다</br>늘 최선을 다해 고객의 입장에서 먼저 생각하겠습니다</br></br>
                 고객센터 : 010-1111-1111</br>
-                주소 : 서울특별시 도봉구 삼양로 144길 33
+                주소 : 서울특별시 도봉구 삼양로 144길 33</br>
+                <button class="btn btn-sm btn-secondary mt-3" data-toggle="modal" data-target="#statistic">상품 비율 확인</button>
 
+    </div>
 
+    <!--Modal-->
+    <div class="modal fade" id="statistic" tabindex="-1" role="dialog" aria-labelledby="modalLabel1" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel3">Ebly 상품 현황</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -49,6 +72,35 @@
         {% include 'shop/footer.html' %}
     </div>
 </div>
+
+    <script>
+              let p_count = {{cnt}}
+              data = {
+                  labels: ['아우터', '상의', '스커트', '팬츠', '악세사리', '신발', '원피스'],
+                  datasets: [{ label: '# 갯수', data: [p_count[0], p_count[1],p_count[2],p_count[3],p_count[4],p_count[5],p_count[6]],
+                  backgroundColor: ['rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)',
+                                    'rgba(227, 218, 231, 1)'],
+                  borderColor : ['rgba(255, 99, 132, 1.0)',
+                                 'rgba(54, 162, 235, 1.0)',
+                                 'rgba(75, 192, 192, 1,0)',
+                                 'rgba(153, 102, 255, 1.0)',
+                                 'rgba(255, 159, 64, 1.0)',
+                                 'rgba(160, 132, 157, 1)'],
+                  borderWidth:1
+                  }]
+              };
+              var ctx = document.getElementById('myChart');
+              var myChart = new Chart(ctx, {
+                type: 'bar',
+                data : data,
+                options: {scales: { yAxes: [{ ticks: { beginAtZero: true } }] } }
+              });
+
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
