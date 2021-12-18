@@ -98,7 +98,7 @@
                     <h4><span class="badge bg-light text-dark ml-2">#{{tag}}</span></h4>
                     {% endfor %}
                 </div>
-                {{good.about | linebreaks}}
+                {{good.get_content_markdown | safe | linebreaks }}
             </div>
         </div>
         <div class="mt-3"><hr size="10"></div>

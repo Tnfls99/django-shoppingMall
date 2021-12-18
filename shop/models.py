@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from markdownx.models import MarkdownxField
+from markdownx.utils import markdown
 
 # Create your models here.
 
@@ -76,7 +78,7 @@ class Good(models.Model):
     # 상품명
     name = models.TextField()
     # 간단한 설명
-    about = models.TextField()
+    about = MarkdownxField()
     # 상품 가격
     price = models.IntegerField()
     # 재고
@@ -103,6 +105,9 @@ class Good(models.Model):
 
     def get_absolute_url(self):
         return f'/shop/{self.pk}/'
+
+    def get_content_markdown(self):
+        return markdown(self.about)
 
 
 class Comment(models.Model): # 블로그 포스트가 존재해야만 댓글을 달 수 있다. 댓글과 포스트는 다대일 관계
