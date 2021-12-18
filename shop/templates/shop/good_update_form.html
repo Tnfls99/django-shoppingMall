@@ -1,0 +1,21 @@
+{% extends 'shop/base_full_width.html' %}
+{% load crispy_forms_tags %}
+{% block 'title_area' %}Edit Good{% endblock %}
+{% block main_area %}
+    <h1>Edit Post</h1>
+    <hr />
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+            {{form | crispy}}
+            <!-- tag 입력받기 -->
+            <div>
+                <label for="id_tags_str">Tags:</label>
+                <input type="text" name="tags_str" required id="id_tags_str" value="{{ tag_str_default }}"
+                    class="textinput textInput form-control">
+            </div>
+        <br>
+        <button type="submit" class="btn btn-secondary float-right">Submit</button>
+    </form>
+    {{form.media}}
+{% endblock %}

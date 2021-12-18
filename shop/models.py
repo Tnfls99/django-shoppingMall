@@ -95,6 +95,8 @@ class Good(models.Model):
     category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
     # 태그
     tag = models.ManyToManyField(Tag)
+    # 상품 등록한 사람
+    user_com = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return f'{self.name}'
