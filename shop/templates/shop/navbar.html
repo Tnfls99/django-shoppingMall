@@ -19,16 +19,14 @@
         </ul>
         <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
-            <li class="nav-item">
-                <a class="nav-link" href="/shop/mypage/">{{user.username}} 님</a>
-            </li>
-            {% if user.is_authenticated %}
             {% if user.is_staff or user.is_superuser %}
             <li class="nav-item">
                 <a class="nav-link" href="/shop/create_good/">상품 등록하기</a>
             </li>
             {% endif %}
-            {% endif %}
+            <li class="nav-item">
+                <a class="nav-link" href="/shop/mypage/">{{user.username}} 님</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="/accounts/logout/">Log out</a>
             </li>

@@ -6,14 +6,15 @@
     <div class="row ">
         <h2 class="mt-4">모든 쇼핑몰 </h2>
             <div class="col mt-4"><hr size="50"></div>
+        <div class="float-right mt-4" style="color:gray; font-size:small">모든 입점 쇼핑몰과 최근 등록된 상품을 보여드려요</div>
     </div>
     {% for good in goods %}
     {% if good %}
     <div class="row mt-4">
-        <div class="col-md-4 mt-5" style="text-align:center;">
+        <div class="col-md-4 mt-3" style="text-align:center;">
             {% if good.0 %}
             <img class="rounded-circle" src="{{good.0.company.logo.url}}" width="150px">
-            <h5 class="mt-2">{{good.0.company}}</h5>
+            <h5 class="mt-2"><strong>{{good.0.company}}</strong></h5>
             <a href="/shop/company/{{good.0.company}}" style="color:gray;">모든 상품 보기</a>
             {% endif %}
         </div>

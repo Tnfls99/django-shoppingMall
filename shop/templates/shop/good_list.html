@@ -105,13 +105,13 @@
                 </div>
             </div>
         </div>
+        <!--Pagination-->
         {% if is_paginated %}
-        <!-- Pagination-->
         <div class="row mt-5 justify-content-center">
         <ul class="pagination justify-content-center mb-4">
             {% if page_obj.has_previous %} <!-- 이전 객체가 있을 경우 -->
             <li class="page-item">
-                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">← 이전</a>
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" style="color:black;">← 이전</a>
             </li>
             {% else %}
             <li class="page-item disabled">
@@ -121,7 +121,7 @@
 
             {% if page_obj.has_next %} <!-- 다음 객체가 존재할 경우 -->
             <li class="page-item">
-                <a class="page-link" href="?page={{ page_obj.next_page_number }}">다음 →</a>
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}" style="color:black;">다음 →</a>
             </li>
             {% else %}
             <li class="page-item disabled">

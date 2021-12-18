@@ -21,8 +21,8 @@
     <div class="container px-4 py-5" style="text-align:center;">
         <h2 class="pb-2 border-bottom">Welcome to Ebly !</h2>
                Ebly는 새로운 쇼핑 역사를 써나갑니다</br>늘 최선을 다해 고객의 입장에서 먼저 생각하겠습니다</br></br>
-                고객센터 : 010-1111-1111</br>
-                주소 : 서울특별시 도봉구 삼양로 144길 33</br>
+                - 고객센터 : 010-1234-5678</br>
+                - 주소 : 서울특별시 도봉구 삼양로 144길 33</br>
                 <button class="btn btn-sm btn-secondary mt-3" data-toggle="modal" data-target="#statistic">상품 비율 확인</button>
 
     </div>
@@ -56,7 +56,7 @@
         {% for com in companies %}
       <div class="col-lg-6 mb-5">
         <div>
-          <h4 class="fw-bold mb-0">{{com.com_name}}</h4>
+          <h4 class="fw-bold mb-0" style="background-color:#c9c9cf;">{{com.com_name}}</h4>
             <p></p>
           <p> - 주소 : {{com.address}}</p>
             <p> - 전화번호 : {{com.contact}}</p>
@@ -67,11 +67,9 @@
         {% endfor %}
   </div>
   </div>
-<div class="container">
     <div class="mt-5">
         {% include 'shop/footer.html' %}
     </div>
-</div>
 
     <script>
               let p_count = {{cnt}}
