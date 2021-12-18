@@ -53,11 +53,13 @@
                         </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-6"></div>
-                    <div class="col-sm-6 mt-5">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-8 mt-5">
                         {% if good.inventory == 0 %}
+                        <font style="color:red;">상품이 품절되었습니다.</font>
                         <button type="button" class="btn btn-outline-secondary" disabled>CART</button>
                         <button type="button" class="btn btn-outline-info" disabled>BUY</button>
+
                         {% else %}
                         <button type="button" class="btn btn-outline-secondary">CART</button>
                         <button type="button" class="btn btn-outline-info">BUY</button>
@@ -95,7 +97,7 @@
             <div class="col-sm-6 ml-3" style="text-align: center;">
                 <div class="row mb-3">
                     {% for tag in tags %}
-                    <h4><span class="badge bg-light text-dark ml-2">#{{tag}}</span></h4>
+                    <h5><span class="badge bg-light text-dark ml-2">#{{tag}}</span></h5>
                     {% endfor %}
                 </div>
                 {{good.get_content_markdown | safe | linebreaks }}
@@ -114,7 +116,7 @@
             </form>
             {% else %}
             <a role="button" class="btn btn-outline-dark" href="#"
-               data-toggle="modal" data-target="#loginModal">Log in and leave a comment</a>
+               data-toggle="modal" data-target="#loginModal">로그인 후 이용가능합니다</a>
             {% endif %}
             {% if comments %}
             {% for c in comments %}

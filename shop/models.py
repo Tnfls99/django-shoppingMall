@@ -18,6 +18,8 @@ class Company(models.Model):
     com_url = models.URLField()
     # 회사 계좌번호
     bank_account = models.CharField(max_length=50)
+    # company logo
+    logo = models.ImageField(upload_to='shop/images/logo/', blank=False)
 
     def __str__(self):
         return f'{self.com_name}'

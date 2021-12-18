@@ -11,6 +11,7 @@ urlpatterns = [
     path('<str:company>/<str:slug>', views.complex_page),
     path('mypage/', views.mypage),
     path('<int:pk>/new_comment/', views.new_comment),
+    path('malls/', views.all_malls),
     path('', views.GoodList.as_view()),
     path('<int:pk>/', views.GoodDetail.as_view()),
 ]

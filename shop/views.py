@@ -32,7 +32,7 @@ class GoodCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         current_user = self.request.user
         # 로그인이 되어져 있으면서 스태프 인가
         if current_user.is_authenticated and (current_user.is_staff or current_user.is_superuser):
-            form.instance.author = current_user
+            form.instance.user_com = current_user
             response = super(GoodCreate, self).form_valid(form)
             tags_str = self.request.POST.get('tags_str') # template의 input name과 일치해야한다.
             if tags_str:
@@ -45,7 +45,7 @@ class GoodCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
                     if is_tag_created:
                         tag.slug = slugify(t, allow_unicode=True) # 한글에 대한 태그 허용
                         tag.save()
-                    self.object.tags.add(tag)
+                    self.object.tag.add(tag)
             return response
         else:
             return redirect('/shop/')
@@ -134,8 +134,6 @@ class GoodDetail(DetailView):
             context['detail'] = detail
         image = get_detail_img(url)
         comments = Comment.objects.filter(good=self.object)
-
-
         context['comments'] = comments
         context['img'] = image
         context['sizes'] = self.object.size.all()
@@ -239,3 +237,20 @@ def new_comment(request, pk):
                 return redirect(good.get_absolute_url())
         else:
             raise PermissionDenied
+
+
+def all_malls(request):
+    companies = Company.objects.all()
+    goods = []
+    for com in companies:
+        g = Good.objects.filter(company=com)
+        if len(g) > 3:
+            goods.append(g[:3])
+        else:
+            goods.append(g)
+
+
+    return render(request, 'shop/goods_by_malls.html',
+                  {
+                      'goods': goods,
+                  })

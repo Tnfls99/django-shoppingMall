@@ -85,6 +85,9 @@
                             <div class="card-body">
                                 <span class="badge bg-outline-dark float-rigth" style="color:gray">{{good.category}}</span>
                                 <h5 class="card-title">{{ good.name }}</h5>
+                                {% if good.inventory == 0 %}
+                                <h6 style="color:red;">&nbsp&nbsp일시품절</h6>
+                                {% endif %}
                                 <div class="card-text float-right">{{good.price}} 원</div>
                                 <a class="btn btn-outline-dark mt-2" href="{{ good.get_absolute_url }}">구입하기 →</a>
                             </div>
