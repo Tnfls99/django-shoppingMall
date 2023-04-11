@@ -129,10 +129,10 @@ class GoodDetail(DetailView):
     def get_context_data(self, **kwargs):
         url = self.object.from_url
         context = super(GoodDetail, self).get_context_data()
-        detail = get_detail(url)
-        if detail:
-            context['detail'] = detail
-        image = get_detail_img(url)
+        # detail = get_detail(url)
+        # if detail:
+        #     context['detail'] = detail
+        image = self.object.image
         comments = Comment.objects.filter(good=self.object)
         context['comments'] = comments
         context['img'] = image
@@ -245,7 +245,7 @@ def all_malls(request):
     for com in companies:
         g = Good.objects.filter(company=com)
         if len(g) > 3:
-            goods.append(g[:3])
+            goods.append(g[len(g)-3:len(g)])
         else:
             goods.append(g)
 
